@@ -15,7 +15,6 @@ let ySpeed;
 let xDirection = 1
 let yDirection = 1 
 let state = 1
-let button = document.getElementById("button")
 
 
 function setup() {
@@ -48,7 +47,7 @@ function draw() {
     yDirection *= -1
   }
 
-  if (Ypos > 425 && Ypos < 450 && Xpos > mouseX && Xpos < mouseX + 100) {
+  if (Ypos > 425 && Ypos < 435 && Xpos > mouseX && Xpos < mouseX + 100) {
     yDirection *= -1
     xDirection *= 1
     score++
@@ -66,8 +65,14 @@ function draw() {
     fill(0,255,0)
     textSize(22)
     text("Game Over", 200, 250)
-    health = 10
-    button.addEventListener("click", restart)
+    text(score1, 200, 300)
+    let button = document.getElementById("button")
+    button.addEventListener("click", function(e){
+      e.preventDefault()
+      state = 1
+      health = 10
+      score = 0
+    })
     
   }
 
@@ -76,11 +81,4 @@ function draw() {
   stroke(r, g, b);
   strokeWeight(5)
   line(mouseX, 450, mouseX + 100, 450);
-}
-
-function restart(e){
-  e.preventDefault()
-  state == 1
-  health = 10
-  score = 0
 }
