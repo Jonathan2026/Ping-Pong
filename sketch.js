@@ -24,46 +24,48 @@ function setup() {
 }
 
 function draw() {
-  background(0);
-  
-  strokeWeight(1)
-  score1 = "Score:" + score
-  textSize(22)
-  text(score1, 0, 20)
-  
-  health1 = "Health:" + health
-  text(health1, 400, 20)
-  
-  fill(r, g, b);
-  ellipse(Xpos, Ypos, 50, 50)
-  
-  Xpos += xSpeed * xDirection
-  Ypos += ySpeed * yDirection
-  
-  if (Xpos < 25 || Xpos > 475){
-    xDirection *= -1
-  }
-  if (Ypos < 25){
-    yDirection *= -1
-  }
+  if (state == 1){
+    background(0);
+    strokeWeight(1)
+    score1 = "Score:" + score
+    textSize(22)
+    text(score1, 0, 20)
+    
+    health1 = "Health:" + health
+    text(health1, 400, 20)
+    
+    fill(r, g, b);
+    ellipse(Xpos, Ypos, 50, 50)
+    
+    Xpos += xSpeed * xDirection
+    Ypos += ySpeed * yDirection
+    
+    if (Xpos < 25 || Xpos > 475){
+      xDirection *= -1
+    }
+    if (Ypos < 25){
+      yDirection *= -1
+    }
 
-  if (Ypos > 425 && Ypos < 435 && Xpos > mouseX && Xpos < mouseX + 100) {
-    yDirection *= -1
-    xDirection *= 1
-    score++
-  }
+    if (Ypos > 425 && Ypos < 435 && Xpos > mouseX && Xpos < mouseX + 100) {
+      yDirection *= -1
+      xDirection *= 1
+      score++
+    }
+    
+    if (Ypos > 475){
+      Ypos = 50
+      health = health - 1
+    } 
+    if (health == 0){
+      state = 2}
   
-  if (Ypos > 475){
-    Ypos = 50
-    health = health - 1
-  } 
-  if (health == 0){
-    state = 2
   }
   if (state == 2){
     background(0)
     fill(0,255,0)
     textSize(22)
+    strokeWeight(1)
     text("Game Over", 200, 250)
     text(score1, 200, 300)
     let button = document.getElementById("button")
